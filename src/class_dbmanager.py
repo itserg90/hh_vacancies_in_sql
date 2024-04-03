@@ -2,11 +2,14 @@ import psycopg2
 
 
 class DBManager:
+    """Класс для взаимодействия с базой данных"""
+
     def __init__(self, database_name, params):
         self.database_name = database_name
         self.params = params
 
     def get_companies_and_vacancies_count(self):
+        """Получаем список всех компаний и количество вакансий у каждой компании"""
         try:
             with psycopg2.connect(dbname=self.database_name, **self.params) as conn:
                 with conn.cursor() as cur:
@@ -19,6 +22,7 @@ class DBManager:
                     """)
                     for name, quantity in cur.fetchall():
                         print(f"Компания {name}: {quantity} вакансий")
+                    print("")
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
         finally:
@@ -26,6 +30,9 @@ class DBManager:
                 conn.close()
 
     def get_all_vacancies(self):
+        """
+        Получаем список всех вакансий с указанием названия компании, названия вакансии, зарплаты и ссылки на вакансию
+        """
         try:
             with psycopg2.connect(dbname=self.database_name, **self.params) as conn:
                 with conn.cursor() as cur:
@@ -50,6 +57,7 @@ class DBManager:
                 conn.close()
 
     def get_avg_salary(self):
+        """Получаем среднюю зарплату по вакансиям"""
         try:
             with psycopg2.connect(dbname=self.database_name, **self.params) as conn:
                 with conn.cursor() as cur:
@@ -58,7 +66,7 @@ class DBManager:
                         SELECT ROUND(AVG(salary)) FROM vacancies
                         WHERE salary <> 0
                     """)
-                    print(f"Средняя зарплата по вакансиям: {cur.fetchall()[0][0]} руб.")
+                    print(f"\nСредняя зарплата по вакансиям: {cur.fetchall()[0][0]} руб.\n")
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
         finally:
@@ -66,6 +74,7 @@ class DBManager:
                 conn.close()
 
     def get_vacancies_with_higher_salary(self):
+        """Получаем список всех вакансий, у которых зарплата выше средней по всем вакансиям"""
         try:
             with psycopg2.connect(dbname=self.database_name, **self.params) as conn:
                 with conn.cursor() as cur:
@@ -97,6 +106,7 @@ class DBManager:
                 conn.close()
 
     def get_vacancies_with_keyword(self, job_name):
+        """Получаем список всех вакансий, в названии которых содержится переданное в метод слово"""
         try:
             with psycopg2.connect(dbname=self.database_name, **self.params) as conn:
                 with conn.cursor() as cur:

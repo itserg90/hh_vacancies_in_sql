@@ -6,6 +6,7 @@ from src.class_vacancy import Vacancy
 
 
 def create_database(database_name: str, params: dict) -> None:
+    """Создаем базу данных и таблицы в ней"""
     conn = psycopg2.connect(**params)
     conn.autocommit = True
     cur = conn.cursor()
@@ -62,6 +63,7 @@ def create_database(database_name: str, params: dict) -> None:
 
 def save_data_to_database(company_data: Dict[str, Company], vacancy_data: Dict[str, List[Vacancy]], database_name: str,
                           params: dict) -> None:
+    """Сохраняем данные в таблицы базы данных"""
     try:
         with psycopg2.connect(dbname=database_name, **params) as conn:
             with conn.cursor() as cur:
