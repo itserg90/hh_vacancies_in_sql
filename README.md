@@ -1,5 +1,5 @@
 <h1>Search for vacancies on HeadHunter👌</h1>
-<img src="https://www.highamferrers-tc.gov.uk/images/1564363/large.jpg">
+<img src="https://irecommend.ru/sites/default/files/product-images/57951/hh_ru_logo.jpg">
 <h2>Программа для создания базы данных, нижеуказанных компаний и их вакансий😉</h2>
 <h3>Поиск ведется среди компаний:</h3>
 
