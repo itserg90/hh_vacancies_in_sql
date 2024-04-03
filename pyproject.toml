@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "hh-vacancies-in-sql"
+version = "0.1.0"
+description = ""
+authors = ["Sergei Gorlanov <itserg90@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+psycopg2-binary = "^2.9.9"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
