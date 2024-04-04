@@ -17,12 +17,12 @@ def drop_database(name, params):
 
 
 def test_cast_to_object_company(dict_company):
-    current_dict = Company.cast_to_object_list(dict_company)
+    current_dict = Company.cast_to_object(dict_company)
     assert current_dict['test_1'].name == 'test_1'
 
 
 def test_cast_to_object_vacancy(dict_vacancy):
-    current_dict = Vacancy.cast_to_object_list(dict_vacancy)
+    current_dict = Vacancy.cast_to_object(dict_vacancy)
     assert current_dict['test_1'][0].name == 'vac_1'
 
 
@@ -80,7 +80,7 @@ def test_get_vacancies_with_higher_salary_dbmanager(data_company, data_vacancy, 
     create_database(get_database_name, get_params)
     save_data_to_database(data_company, data_vacancy, get_database_name, get_params)
     db = DBManager(get_database_name, get_params)
-    assert db.get_vacancies_with_higher_salary() is None
+    assert db.get_vacancies_with_higher_salary()[0][0] == 'com_2'
     drop_database(get_database_name, get_params)
 
 
@@ -88,5 +88,5 @@ def test_get_vacancies_with_keyword_dbmanager(data_company, data_vacancy, get_da
     create_database(get_database_name, get_params)
     save_data_to_database(data_company, data_vacancy, get_database_name, get_params)
     db = DBManager(get_database_name, get_params)
-    assert db.get_vacancies_with_keyword('vac_1') is None
+    assert db.get_vacancies_with_keyword('vac_1')[0][0] == 'com_1'
     drop_database(get_database_name, get_params)
