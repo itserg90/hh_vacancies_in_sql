@@ -1,7 +1,7 @@
 class Company:
     """Класс для создания объектов компаний"""
 
-    def __init__(self, name: str, url: str, accredited_it_employer: str):
+    def __init__(self, name: str, url: str, accredited_it_employer: bool):
         self.name = name
         self.url = url
         self.accredited_it_employer = accredited_it_employer
@@ -19,4 +19,4 @@ class Company:
         return current_dict
 
     def __repr__(self):
-        return f"{self.__class__.__name__}({self.__dict__})"
+        return f"{self.__class__.__name__}{tuple(self.__dict__.values())}"
