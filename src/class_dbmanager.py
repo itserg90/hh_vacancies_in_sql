@@ -1,3 +1,5 @@
+import os
+
 import psycopg2
 
 
@@ -20,9 +22,12 @@ class DBManager:
                         GROUP BY companies.name
                         ORDER BY companies.name
                     """)
+                    current_list = []
                     for name, quantity in cur.fetchall():
+                        current_list.append((name, quantity))
                         print(f"Компания {name}: {quantity} вакансий")
                     print("")
+                    return current_list
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
         finally:
@@ -42,6 +47,7 @@ class DBManager:
                         JOIN vacancies USING(id_company)
                         ORDER BY companies.name
                     """)
+                    current_list = []
                     for number, (company_name, vacancy_name, url, salary) in enumerate(cur.fetchall(), 1):
                         if not salary:
                             salary = 'Зарплата не указана'
@@ -50,6 +56,8 @@ class DBManager:
                             f"Вакансия: {vacancy_name}\n"
                             f"Зарплата: {salary}\n"
                             f"Ссылка: {url}\n")
+                        current_list.append((company_name, vacancy_name, salary, url))
+                    return current_list
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
         finally:
@@ -66,7 +74,9 @@ class DBManager:
                         SELECT ROUND(AVG(salary)) FROM vacancies
                         WHERE salary <> 0
                     """)
-                    print(f"\nСредняя зарплата по вакансиям: {cur.fetchall()[0][0]} руб.\n")
+                    result = cur.fetchall()[0][0]
+                    print(f"\nСредняя зарплата по вакансиям: {result} руб.\n")
+                    return result
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
         finally:

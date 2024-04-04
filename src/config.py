@@ -1,4 +1,7 @@
 from configparser import ConfigParser
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).parent
 
 
 def config(filename='database.ini', section='postgresql'):

@@ -19,6 +19,8 @@ class Vacancy:
 
         if not self.salary:
             self.salary = 0
+        elif self.salary["from"] and self.salary["to"]:
+            self.salary = round((self.salary["from"] + self.salary["from"]) / 2)
         elif self.salary["from"]:
             self.salary = self.salary["from"]
         else:
@@ -44,4 +46,4 @@ class Vacancy:
         return current_dict
 
     def __repr__(self):
-        return f"{self.__class__.__name__}({self.__dict__})"
+        return f"{self.__class__.__name__}{tuple(self.__dict__.values())}"
