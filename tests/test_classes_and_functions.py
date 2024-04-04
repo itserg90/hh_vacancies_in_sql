@@ -6,7 +6,7 @@ from src.class_company import Company
 from src.class_vacancy import Vacancy
 
 
-def drop_database(name, params):
+def drop_database(name: str, params: dict) -> None:
     """Удаляет тестовую базу данных"""
     conn = psycopg2.connect(**params)
     conn.autocommit = True
