@@ -27,7 +27,7 @@ class Vacancy:
             self.salary = self.salary["to"]
 
     @classmethod
-    def cast_to_object_list(cls, hh_vacancies: dict) -> dict:
+    def cast_to_object(cls, hh_vacancies: dict) -> dict:
         """Преобразуем данные JSON в объекты класса"""
 
         current_dict = {}

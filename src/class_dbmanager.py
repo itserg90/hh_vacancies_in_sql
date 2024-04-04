@@ -96,6 +96,7 @@ class DBManager:
                         WHERE v.salary > (SELECT ROUND(AVG(vacancies.salary)) FROM vacancies WHERE v.salary <> 0)
                         ORDER BY v.salary DESC
                     """)
+                    current_list = []
                     for number, (
                             company_name, vacancy_name, url, salary, city, pub_date, experience,
                             requirement) in enumerate(cur.fetchall(), 1):
@@ -109,6 +110,15 @@ class DBManager:
                               f"Дата публикации: {pub_date}\n"
                               f"Опыт: {experience}\n"
                               f"Требования: {requirement}\n")
+                        current_list.append((company_name,
+                                             vacancy_name,
+                                             url,
+                                             salary,
+                                             city,
+                                             pub_date,
+                                             experience,
+                                             requirement))
+                    return current_list
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
         finally:
@@ -128,6 +138,7 @@ class DBManager:
                         WHERE LOWER(v.name) LIKE LOWER('%{job_name}%')
                         ORDER BY v.salary DESC
                     """)
+                    current_list = []
                     for number, (
                             company_name, vacancy_name, url, salary, city, pub_date, experience,
                             requirement) in enumerate(cur.fetchall(), 1):
@@ -141,6 +152,15 @@ class DBManager:
                               f"Дата публикации: {pub_date}\n"
                               f"Опыт: {experience}\n"
                               f"Требования: {requirement}\n")
+                        current_list.append((company_name,
+                                             vacancy_name,
+                                             url,
+                                             salary,
+                                             city,
+                                             pub_date,
+                                             experience,
+                                             requirement))
+                    return current_list
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
         finally:

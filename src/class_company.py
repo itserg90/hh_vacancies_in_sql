@@ -7,7 +7,7 @@ class Company:
         self.accredited_it_employer = accredited_it_employer
 
     @classmethod
-    def cast_to_object_list(cls, hh_companies: dict) -> dict:
+    def cast_to_object(cls, hh_companies: dict) -> dict:
         """Преобразуем данные JSON в объекты класса"""
 
         current_dict = {}

@@ -12,8 +12,8 @@ def main():
     # Название базы данных
     database_name = 'hh_vacancies'
 
-    vacancy_list = Vacancy.cast_to_object_list(api.hh_vacancies)
-    company_list = Company.cast_to_object_list(api.hh_companies)
+    vacancy_list = Vacancy.cast_to_object(api.hh_vacancies)
+    company_list = Company.cast_to_object(api.hh_companies)
 
     create_database(database_name, config())
     save_data_to_database(company_list, vacancy_list, database_name, config())
