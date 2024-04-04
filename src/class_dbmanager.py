@@ -1,5 +1,3 @@
-import os
-
 import psycopg2
 
 
@@ -10,7 +8,7 @@ class DBManager:
         self.database_name = database_name
         self.params = params
 
-    def get_companies_and_vacancies_count(self):
+    def get_companies_and_vacancies_count(self) -> list:
         """Получаем список всех компаний и количество вакансий у каждой компании"""
         try:
             with psycopg2.connect(dbname=self.database_name, **self.params) as conn:
@@ -34,7 +32,7 @@ class DBManager:
             if conn is not None:
                 conn.close()
 
-    def get_all_vacancies(self):
+    def get_all_vacancies(self) -> list:
         """
         Получаем список всех вакансий с указанием названия компании, названия вакансии, зарплаты и ссылки на вакансию
         """
@@ -64,7 +62,7 @@ class DBManager:
             if conn is not None:
                 conn.close()
 
-    def get_avg_salary(self):
+    def get_avg_salary(self) -> int:
         """Получаем среднюю зарплату по вакансиям"""
         try:
             with psycopg2.connect(dbname=self.database_name, **self.params) as conn:
@@ -83,7 +81,7 @@ class DBManager:
             if conn is not None:
                 conn.close()
 
-    def get_vacancies_with_higher_salary(self):
+    def get_vacancies_with_higher_salary(self) -> list:
         """Получаем список всех вакансий, у которых зарплата выше средней по всем вакансиям"""
         try:
             with psycopg2.connect(dbname=self.database_name, **self.params) as conn:
@@ -125,7 +123,7 @@ class DBManager:
             if conn is not None:
                 conn.close()
 
-    def get_vacancies_with_keyword(self, job_name):
+    def get_vacancies_with_keyword(self, job_name: str) -> list:
         """Получаем список всех вакансий, в названии которых содержится переданное в метод слово"""
         try:
             with psycopg2.connect(dbname=self.database_name, **self.params) as conn:

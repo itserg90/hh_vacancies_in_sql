@@ -1,7 +1,7 @@
 from src.class_api import ApiVacanciesHh
 from src.class_vacancy import Vacancy
 from src.class_company import Company
-from src.config import config
+from config import config
 from src.functions import create_database, save_data_to_database
 from src.class_dbmanager import DBManager
 
