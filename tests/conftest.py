@@ -3,7 +3,7 @@ import os
 
 from src.class_company import Company
 from src.class_vacancy import Vacancy
-from env import DB_HOST, DB_NAME, USER, PASSWORD, DB_PORT
+from env import DB_HOST, USER, PASSWORD, DB_PORT
 
 
 @pytest.fixture()
@@ -50,7 +50,7 @@ def data_vacancy():
 
 @pytest.fixture()
 def get_database_name():
-    return DB_NAME
+    return 'test_hh_vacancies'
 
 
 @pytest.fixture()
