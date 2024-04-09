@@ -1,7 +1,7 @@
 from src.class_api import ApiVacanciesHh
 from src.class_vacancy import Vacancy
 from src.class_company import Company
-from config import config
+from config import db_connection
 from src.functions import create_database, save_data_to_database
 from src.class_dbmanager import DBManager
 
@@ -15,10 +15,10 @@ def main():
     vacancy_list = Vacancy.cast_to_object(api.hh_vacancies)
     company_list = Company.cast_to_object(api.hh_companies)
 
-    create_database(database_name, config())
-    save_data_to_database(company_list, vacancy_list, database_name, config())
+    create_database(database_name, db_connection)
+    save_data_to_database(company_list, vacancy_list, database_name, db_connection)
 
-    db = DBManager(database_name, config())
+    db = DBManager(database_name, db_connection)
     while True:
         print("Здравствуйте. Выберите действие и получите информацию о вакансиях.\n"
               "1. Получить список всех компаний и количество вакансий у каждой компании\n"

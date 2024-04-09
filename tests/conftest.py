@@ -3,6 +3,7 @@ import os
 
 from src.class_company import Company
 from src.class_vacancy import Vacancy
+from env import DB_HOST, DB_NAME, USER, PASSWORD, DB_PORT
 
 
 @pytest.fixture()
@@ -49,12 +50,12 @@ def data_vacancy():
 
 @pytest.fixture()
 def get_database_name():
-    return 'test_hh_vacancies'
+    return DB_NAME
 
 
 @pytest.fixture()
 def get_params():
-    return {'host': 'localhost',
-            'user': 'postgres',
-            'password': os.environ['PASSWORD'],
-            'port': '5432'}
+    return {'host': DB_HOST,
+            'user': USER,
+            'password': PASSWORD,
+            'port': DB_PORT}
